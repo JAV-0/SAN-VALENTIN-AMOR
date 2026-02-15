@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz San Valentín, Sharon ❤️</title>
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, .14);
+            --glass2: rgba(255, 255, 255, .08);
+            --txt: #ffffff;
+            --shadow: 0 18px 50px rgba(0, 0, 0, .25);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            color: var(--txt);
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff2f72, #ff93c1 55%, #ff6aa2);
+        }
+
+        /* Fondo con foto + overlay */
+        .bg-photo {
+            position: fixed;
+            inset: 0;
+            background: url("img.jpeg") center/cover no-repeat;
+            filter: blur(10px) brightness(.68) saturate(1.18);
+            transform: scale(1.08);
+            z-index: -3;
+            transition: background-image .6s ease;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, .40), rgba(0, 0, 0, .28));
+            z-index: -2;
+        }
+
+        /* Brillos suaves */
+        .sparkle {
+            position: fixed;
+            inset: -20%;
+            background:
+                radial-gradient(circle at 15% 30%, rgba(255, 255, 255, .18), transparent 35%),
+                radial-gradient(circle at 70% 20%, rgba(255, 255, 255, .14), transparent 38%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, .12), transparent 40%);
+            animation: drift 9s ease-in-out infinite alternate;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate3d(-10px, -10px, 0) scale(1.02)
+            }
+
+            100% {
+                transform: translate3d(14px, 10px, 0) scale(1.05)
+            }
+        }
+
+        .wrap {
+            position: relative;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 18px;
+        }
+
+        .card {
+            width: min(980px, 96vw);
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, .22);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(14px);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+        }
+
+        @media (max-width: 860px) {
+            .card {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .left {
+            padding: 28px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .05));
+        }
+
+        .right {
+            padding: 22px;
+            background: var(--glass2);
+            border-left: 1px solid rgba(255, 255, 255, .18);
+        }
+
+        @media (max-width: 860px) {
+            .right {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, .18)
+            }
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: clamp(28px, 4.2vw, 52px);
+            letter-spacing: .4px;
+        }
+
+        .sub {
+            margin: 0 0 18px;
+            opacity: .95;
+            font-size: clamp(14px, 2vw, 18px);
+            line-height: 1.45;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 12px 0 16px;
+        }
+
+        .pill {
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .14);
+            border: 1px solid rgba(255, 255, 255, .20);
+            font-size: 13px;
+            opacity: .95;
+            white-space: nowrap;
+        }
+
+        .counter {
+            margin-top: 12px;
+            padding: 14px 14px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, .18);
+            border: 1px solid rgba(255, 255, 255, .16);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .counter b {
+            font-size: 18px
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: .2px;
+            transition: transform .12s ease, filter .12s ease;
+            user-select: none;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.04)
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffffff, #ffd3e4);
+            color: #7a0e35;
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, .14);
+            border: 1px solid rgba(255, 255, 255, .20);
+            color: white;
+        }
+
+        .btn-mini {
+            padding: 10px 12px;
+            font-weight: 600;
+        }
+
+        /* Carta */
+        details {
+            margin-top: 14px;
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-weight: 800;
+        }
+
+        summary::-webkit-details-marker {
+            display: none
+        }
+
+        .letter {
+            padding: 0 16px 16px;
+            opacity: .96;
+            line-height: 1.65;
+            font-size: 14.8px;
+        }
+
+        /* Foto */
+        .photo {
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .18);
+            background: #000;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .22);
+            position: relative;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* ✅ muestra la imagen completa */
+            display: block;
+            transform: none;
+            /* ✅ elimina zoom extra */
+            background: #000;
+            /* opcional: relleno si sobran espacios */
+        }
+
+        .photo .badge {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            background: rgba(0, 0, 0, .35);
+            border: 1px solid rgba(255, 255, 255, .16);
+            padding: 8px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            backdrop-filter: blur(8px);
+        }
+
+        /* Música */
+        .music {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 12px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, .18);
+            border: 1px solid rgba(255, 255, 255, .16);
+            margin-bottom: 14px;
+        }
+
+        .music small {
+            opacity: .9
+        }
+
+        input[type="range"] {
+            width: 120px;
+            accent-color: white;
+        }
+
+        /* Corazones */
+        .heart {
+            position: fixed;
+            top: -10vh;
+            font-size: 18px;
+            animation: fall linear forwards;
+            pointer-events: none;
+            filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .25));
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(120vh) rotate(420deg);
+                opacity: 0.9;
+            }
+        }
+
+        .footer-note {
+            margin-top: 14px;
+            opacity: .86;
+            font-size: 12.5px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sharon: si ves el código… sí, te amo más de lo que cabe en una variable ❤️ -->
+    <div class="bg-photo" id="bgPhoto"></div>
+    <div class="bg-overlay"></div>
+    <div class="sparkle"></div>
+
+    <div class="wrap">
+        <div class="card">
+            <section class="left">
+                <h1>Feliz San Valentín,Mi Sharon ❤️</h1>
+                <p class="sub">
+                    Hoy solo quiero recordarte algo: <b>eres mi persona favorita</b>.<br />
+                    Gracias por existir en mi vida.
+                </p>
+
+                <div class="pill-row">
+                    <div class="pill">💘En San Valentín</div>
+                    <div class="pill">🎁 Hecho para ti</div>
+                    <div class="pill">✨ Con amor, Tu Lobito..</div>
+                </div>
+
+                <div class="counter" id="counter">Cargando...</div>
+
+                <div class="controls">
+                    <button class="btn-primary" onclick="showSecret()">💌 Mensaje secreto</button>
+                    <button class="btn-ghost" onclick="toggleHearts()">💖 Corazones: <span
+                            id="heartsState">ON</span></button>
+                    <button class="btn-ghost btn-mini" onclick="prevPhoto()">⬅ Foto</button>
+                    <button class="btn-ghost btn-mini" onclick="nextPhoto()">Foto ➡</button>
+                </div>
+
+                <details>
+                    <summary>📜 Abrir mi carta para ti</summary>
+                    <div class="letter">
+                        Mi Sharoncita, <br /><br />
+                        Este San Valentín no quería regalarte algo cualquiera… quería regalarte algo que
+                        te recuerde que <b>eres importante para mí</b>.<br /><br />
+                        Gracias por tu paciencia, tu cariño, tus detalles y por estar. Contigo, mi vida se siente
+                        más bonita, más tranquila, más completa. <br /><br />
+                        Te elijo hoy y te elegiría mil veces más. ❤️<br /><br />
+                        Con amor,<br />
+                        <b>Tu Lobito --Javier</b>
+                    </div>
+                </details>
+
+                <div class="footer-note">
+                    ✅ Para confirmar que te gusto el regalito<b>debes de grabarte un videito tuyo</b> y enviarme 10
+                    fotitos de ty
+                    <b>y tambien su musica favorita</b>.
+                </div>
+            </section>
+
+            <aside class="right">
+                <div class="music">
+                    <div>
+                        <b>🎵 Música</b><br />
+                        <small id="musicStatus">Pausada</small>
+                    </div>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <button class="btn-primary btn-mini" onclick="toggleMusic()">Play / Pause</button>
+                        <input id="vol" type="range" min="0" max="1" step="0.01" value="0.65" />
+                    </div>
+                </div>
+
+                <div class="photo">
+                    <div class="badge" id="badge">Foto 1/14</div>
+                    <img id="mainPhoto" src="img.jpeg" alt="Foto" />
+                </div>
+
+                <p class="footer-note">
+                    Nota: Por seguridad del navegador, la música empieza cuando presionas Play.
+                </p>
+
+                <audio id="audio" preload="auto">
+                    <source src="music.mp3" type="audio/mpeg" />
+                </audio>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        /* === CAMBIA AQUÍ LA FECHA REAL DE SU ANIVERSARIO ===
+           Formato: new Date(AÑO, MES-1, DÍA)
+           Ej: 14/02/2024 => new Date(2024, 1, 14)
+        */
+        const startDate = new Date(2024, 1, 18); // <-- CAMBIA AQUÍ
+
+        // Fotos
+        const photos = ["img1.jpeg", "img2.jpeg", "img3.jpeg", "img4.jpeg", "img5.jpeg", "img6.jpeg", "img7.jpeg", "img8.jpeg", "img9.jpeg", "img10.jpeg", "img11.jpeg", "img12.jpeg", "img13.jpeg", "img14.jpeg"];
+        let idx = 0;
+
+        const counterEl = document.getElementById("counter");
+        const mainPhoto = document.getElementById("mainPhoto");
+        const badge = document.getElementById("badge");
+        const bgPhoto = document.getElementById("bgPhoto");
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / (1000 * 60)) % 60);
+
+            counterEl.innerHTML = `
+      ❤️ Llevamos <b>${days}</b> días, <b>${hours}</b> horas y <b>${mins}</b> minutos juntos.
+      <div style="margin-top:8px; opacity:.9">
+        Y cada día contigo… me gustas más.
+      </div>
+    `;
+        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        function setPhoto(newIdx) {
+            idx = (newIdx + photos.length) % photos.length;
+            const src = photos[idx];
+
+            mainPhoto.style.opacity = 0;
+            setTimeout(() => {
+                mainPhoto.src = src;
+                bgPhoto.style.backgroundImage = `url("${src}")`;
+                badge.textContent = `Foto ${idx + 1}/${photos.length}`;
+                mainPhoto.style.opacity = 1;
+            }, 180);
+        }
+        function nextPhoto() { setPhoto(idx + 1); }
+        function prevPhoto() { setPhoto(idx - 1); }
+        setPhoto(0);
+
+        function showSecret() {
+            alert("Sharon ❤️\n\nMi lugar favorito siempre será donde estés tú.\n\n— Javier");
+        }
+
+        // Música
+        const audio = document.getElementById("audio");
+        const statusEl = document.getElementById("musicStatus");
+        const vol = document.getElementById("vol");
+        audio.volume = parseFloat(vol.value);
+        vol.addEventListener("input", () => audio.volume = parseFloat(vol.value));
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play().then(() => statusEl.textContent = "Reproduciendo")
+                    .catch(() => statusEl.textContent = "Presiona Play otra vez (permiso del navegador)");
+            } else {
+                audio.pause();
+                statusEl.textContent = "Pausada";
+            }
+        }
+
+        // Corazones
+        let heartsOn = true;
+        let heartTimer = setInterval(spawnHeart, 240);
+        const heartsState = document.getElementById("heartsState");
+
+        function toggleHearts() {
+            heartsOn = !heartsOn;
+            heartsState.textContent = heartsOn ? "ON" : "OFF";
+            if (heartsOn) heartTimer = setInterval(spawnHeart, 240);
+            else clearInterval(heartTimer);
+        }
+
+        function spawnHeart() {
+            const h = document.createElement("div");
+            h.className = "heart";
+            h.textContent = Math.random() > 0.5 ? "❤️" : "💗";
+            h.style.left = Math.random() * 100 + "vw";
+            h.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            h.style.opacity = (Math.random() * 0.4 + 0.55).toFixed(2);
+            h.style.fontSize = (Math.random() * 16 + 16) + "px";
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 9000);
+        }
+    </script>
+</body>
+
+</html>
